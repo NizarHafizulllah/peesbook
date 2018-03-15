@@ -1,18 +1,15 @@
 <?php 
 
 
-class ad_program extends admin_controller {
+class tfi extends admin_controller {
 	
 	var $controller;
-	public function ad_program(){
+	public function tfi(){
 		parent::__construct();
 		$this->controller = get_class($this);
 		$this->load->model($this->controller.'_model','dm');
         $this->load->model("coremodel","cm");
 	}
-
-
-    
 	
 		function index(){
 		
@@ -20,6 +17,10 @@ class ad_program extends admin_controller {
 
 
 		$data_array=array();
+        $data_array['action'] = 'simpan';
+        $data_array['form'] = 'form-simpan';
+
+
 
 		$userdata = $this->session->userdata('admin_login');
 
@@ -29,8 +30,8 @@ class ad_program extends admin_controller {
 
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Program");
-		$this->set_title("Program");
+		$this->set_subtitle("PK");
+		$this->set_title("PK");
 		$this->set_content($content);
 		$this->cetak();
 
@@ -39,6 +40,23 @@ class ad_program extends admin_controller {
 			
 		
 	}
+
+
+    function get_data_bynip(){
+
+        $post = $this->input->post();
+
+        $this->db->where('nip', $post['nip']);
+        $res = $this->db->get('pengguna')->row_array();
+        
+        // $data = $res;
+        echo json_encode($res);
+
+        // show_array($post);
+        // exit();
+        // return 0;
+
+    }
 
 
 	function get_data() {
