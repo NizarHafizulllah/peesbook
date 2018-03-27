@@ -1,147 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Peesbook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/ksb.png"/>
-    <!--page level css -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/vendors/iCheck/css/all.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
-     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendors/sweetalert2/css/sweetalert2.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-    <link href="<?php echo base_url(); ?>assets/css/pages/login_register.css" rel="stylesheet">
-    <!--end of page level css-->
-    <style type="text/css">
-      body  {
-    background-image: url('<?php echo base_url(); ?>assets/img/backgrounds/bg.png');
-    background-color: #cccccc;
-    background-repeat: no-repeat;
-    background-size: cover;
-            }
-      .signin-form{
-        background: transparent;
-      }
-    </style>
-</head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body >
-<div class="container" >
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 signin-form" style="background-color: #278ee2;" >
-            <div class="panel-header" >
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">
-                            <img src="<?php echo base_url('').'assets/img/logopessbook.png' ?>" alt="Logo">
-                        </h2>
-                    </div>
-                </div>
-               
+  <title>Biro Jasa | </title>
+
+  <!-- Bootstrap core CSS -->
+
+  
+
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/dialog/css/bootstrap-dialog.css">
+
+  <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+<script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script> -->
+<!--===============================================================================================-->  
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+  <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/bootstrap/css/bootstrap.min.css"> -->
+
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/animate/animate.css">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/util.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/main.css">
+
+  </head>
+<body style="background-color: #2ecc71;">
+
+
+
+
+  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Sedang memproses. Harap Tunggu...
+                 </h4>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="active page-name">Masuk</span>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info
+                    progress-bar-striped active"
+                    style="width: 100%">
                     </div>
-                </div>
-                <br/>&nbsp;
-                <div class="row">
-                    <form role="form" action="" method="post" class="login-form">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="email"> Nama Pengguna</label>
-                                <input type="text" class="form-control  form-control-lg" id="form-username" name="form-username"
-                                       placeholder="Nama Pengguna">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="password">Kata Sandi</label>
-                                <input type="password" class="form-control form-control-lg" id="form-password"
-                                       name="form-password" placeholder="Kata Sandi">
-                                       <input type="hidden" id="mask" name="mask" />
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            &nbsp;
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                
-                                <button type="button" class="btn btn-primary" id="masuk">Masuk !</button>
-
-
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr class="separator">
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <div class="col-md-12">Develop By</div>
-                            <div class="col-md-12">&nbsp;</div>
-                            <div class="col-md-6">
-                                <img src="<?php echo base_url(); ?>assets/img/ksb.png" width="100px" >
-                            </div>
-                            <div class="col-md-6">
-                                <img src="<?php echo base_url(); ?>assets/img/photo.jpg" width="100px" >
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- begining of page level js -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/vendors/iCheck/js/icheck.js"></script>
-<script src="<?php echo base_url(); ?>assets/vendors/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/pages/login_register.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/vendors/sweetalert2/js/sweetalert2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/alerts.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.md5.js"></script>
+  
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-form-title" style="background-image: url(<?php echo base_url(); ?>assets/login/images/bg-01.jpg);">
+          <span class="login100-form-title-1">
+            Log in
+          </span>
+        </div>
 
+        <form role="form" action="" method="post" class="login-form login100-form validate-form" action="" role="form"  method="post">
+          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+            <span class="label-input100">Username</span>
+            <input class="input100" type="text" name="form-username" id="form-username" placeholder="Enter username">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+            <span class="label-input100">Password</span>
+            <input class="input100" type="password" name="form-password" id="form-password" placeholder="Enter password">
+            <input type="hidden" id="mask" name="mask" />
+            <span class="focus-input100"></span>
+          </div>
+
+          
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit" id="sub">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+
+  <script src="<?php echo base_url(); ?>assets/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/bootstrap/js/popper.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/login/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/moment.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/js/main.js"></script>
+
+<link href="<?php echo base_url(); ?>assets/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+<script src="<?php echo base_url(); ?>assets/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js" type="text/javascript"></script>
+     
+ 
+
+    
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#masuk').on('click', function () {
+        $('#sub').on('click', function () {
             
-
              $("#mask").val($.md5($("#form-password").val()));
             $("#form-password").val('');
-
             var username = $("#form-username").val();
             var mask = $("#mask").val();
-
-
-
             var data = 'username='+ username  + '&mask='+ mask;
-
             $.ajax({
                                 url : '<?php echo site_url("login/ceklogin") ?>',
                                 type : 'post',
                                 dataType : 'json',
                                 data : data,
                                 success : function(hasil){
-
                                     if(hasil.error == false && hasil.level == 1) {
-
                                        
-                                            swal({
-                                                title: 'Login Berhasil',
-                                                text: 'Anda Login Sebagai Operator Kecamatan',
-                                                type: 'success',
-                                                buttonsStyling: false,
-                                                confirmButtonClass: 'btn btn-primary'
-                                                  
-                                            });
-                                     
+                                           BootstrapDialog.alert({
+                                                type: BootstrapDialog.TYPE_PRIMARY,
+                                                title: 'Informasi',
+                                                message: hasil.message,
 
-                                                window.location.href = '<?php echo site_url("admin"); ?>';
+                                                callback: function(result) {
+                                                        location.href=hasil.link;
+                                                }
+                                                 
+                                                 
+                                                } 
+                                            ); 
            
                   
                                     }else if(hasil.error == false && hasil.level == 2){
@@ -154,7 +190,6 @@
                                                   
                                             });
                                      
-
                                                 window.location.href = '<?php echo site_url("kabupaten"); ?>';
                                     }else if(hasil.error == false && hasil.level == 3){
                                         swal({
@@ -166,7 +201,6 @@
                                                   
                                             });
                                      
-
                                                 window.location.href = '<?php echo site_url("super_admin"); ?>';
                                     }else if(hasil.error == false && hasil.level == 4){
                                         swal({
@@ -178,7 +212,6 @@
                                                   
                                             });
                                      
-
                                                 window.location.href = '<?php echo site_url("app_kecamatan"); ?>';
                                     }else if(hasil.error == false && hasil.level == 5){
                                         swal({
@@ -190,22 +223,18 @@
                                                   
                                             });
                                      
-
                                                 window.location.href = '<?php echo site_url("operator_kecamatan"); ?>';
                                     }
                                     else {
-                                         swal({
-                                                buttonsStyling: false,
-                                                confirmButtonClass: 'btn btn-danger',
-                                                title: 'Login Gagal',
-                                                text: 'Kombinasi Username Dan Password Anda Salah',
-                                                type: 'error'
-                                            }
-                                        )
+                                           BootstrapDialog.alert({
+                                                type: BootstrapDialog.TYPE_DANGER,
+                                                title: 'Error',
+                                                message: hasil.message
+                                                 
+                                            }); 
                                         
                                     }
                                 }
-
                             });
         });
       });
@@ -215,4 +244,3 @@
 </body>
 
 </html>
-

@@ -7,44 +7,38 @@ $userdata = $this->session->userdata('admin_login');
 
 <head>
     <meta charset="UTF-8">
-
-    <title><?php echo $title ?></title>
+    <title>PESBook | <?php echo $title ?></title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-   <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico"/>
-   
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- global css -->
     <script src="<?php echo base_url('assets/plugins/jQuery/jQuery-2.1.4.min.js'); ?>"></script>
-
-
-     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
 
     
     <!-- global css -->
     <link type="text/css" href="<?php echo base_url(); ?>assets/css/app.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/custom.css"/>
-    <link href="<?php echo base_url(); ?>assets/vendors/notific/css/jquery.notific8.min.css" rel="stylesheet" type="text/css"/>
-
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/custom.css">
+    <link href="<?php echo base_url(); ?>assets/vendors/notific/css/jquery.notific8.min.css" rel="stylesheet" type="text/css">
     
     <link href="<?php echo base_url(); ?>assets/vendors/iCheck/css/all.css" rel="stylesheet" type="text/css"/>
-    
-    
-
-
-
-    
-   
-
-
-    <!-- end of global css -->
+    <link href="<?php echo base_url(); ?>assets/vendors/airdatepicker/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/pages/datatables.css">
 </head>
 
 <body>
 <!-- header logo: style can be found in header-->
 <header class="header">
     <nav class="navbar navbar-static-top" role="navigation">
-        <a href="<?php echo site_url('admin'); ?>" class="logo">
+        <a href="index.html" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the margining -->
-            <img src="<?php echo base_url(); ?>assets/img/logopessbook.png" alt="logo" widht="80px" height="65px"/>
+            <img src="<?php echo base_url('assets') ?>/img/logo_blue.png" alt="logo"/>
         </a>
         <!-- Header Navbar: style can be found in header-->
         <!-- Sidebar toggle button-->
@@ -56,9 +50,11 @@ $userdata = $this->session->userdata('admin_login');
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
+                
+                <!-- User Account: style can be found in dropdown-->
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0)" class="dropdown-toggle padding-user" data-toggle="dropdown">
-                        <img src="<?php echo base_url('').'assets/images/profil/'.$userdata['foto']; ?>" class="img-circle img-responsive pull-left" alt="User Image">
+                        <img src="<?php echo base_url('assets') ?>/img/authors/<?php echo $userdata['foto'] ?>" class="img-circle img-responsive pull-left" alt="User Image">
                         <div class="riot">
                             <div>
                                 <i class="caret"></i>
@@ -68,16 +64,16 @@ $userdata = $this->session->userdata('admin_login');
                     <ul class="dropdown-menu">
                         <!-- User name-->
                         <li class="user-name text-center">
-                            <span><?php echo $userdata['nama']; ?></span>
+                            <span><?php echo $userdata['username']; ?></span>
                         </li>
                         <!-- Menu Body -->
                         <li class="p-t-3">
-                            <a href="<?php echo site_url('profil_kecamatan'); ?>">
+                            <a href="user_profile.html">
                                 Profile<i class="fa fa-fw fa-user pull-right"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('login/logout_admin'); ?>">
+                            <a href="<?php echo site_url('login/logout_admin') ?>">
                                 Logout <i class="fa fa-fw fa-sign-out pull-right"></i>
                             </a>
                         </li>
@@ -95,91 +91,44 @@ $userdata = $this->session->userdata('admin_login');
             <div id="menu" role="navigation">
                 <div class="nav_profile">
                     <div class="media profile-left">
-
-
+                        <a class="pull-left profile-thumb" href="javascript:void(0)">
+                            <img src="<?php echo base_url('assets') ?>/img/authors/<?php echo $userdata['foto'] ?>" class="img-circle" alt="User Image">
+                        </a>
                         <div class="content-profile">
                             <h4 class="media-heading">
-                                <?php echo $userdata['nama']; ?>
+                                <?php echo $userdata['username'] ?>
                             </h4>
-                            <p>PPTK/Kasubid</p>
+                            <p>Admin</p>
                         </div>
                     </div>
                 </div>
-
-
- <ul class="navigation">
-    <li class="<?php if($curPage=='beranda'){ echo 'active'; } ?>" >
-                        <a href="<?php echo site_url('admin') ?>">
+                <ul class="navigation">
+                    <li class="<?php if($curPage=='beranda'){ echo 'active'; } ?>">
+                        <a href="<?php echo site_url('admin'); ?>">
                             <i class="menu-icon fa fa-fw fa-home"></i>
-                            <span class="mm-text ">Dashboard 1</span>
+                            <span class="mm-text ">Dashboard </span>
                         </a>
                     </li>
- <li class="menu-dropdown <?php if($curPage=='program'||$curPage=='kegiatan'){ echo 'active'; } ?>"> 
-        <a href="#">
-            <i class="menu-icon fa fa-desktop"></i>
-            <span>Data Master</span>
-            <span class="fa arrow"></span>
-        </a>
-                        <ul class="sub-menu">
-                            <li class="<?php if($curPage=='program'){ echo 'active'; } ?>">
-
-                        <a href="<?php echo site_url('ad_program'); ?>">
-                            <i class="fa fa-fw fa-file-text-o"></i>
-                            <span class="mm-text ">1. Program </span>
+                    <li class="<?php if($curPage=='program'){ echo 'active'; } ?>">
+                        <a href="<?php echo site_url('ad_program') ?>">
+                            <i class="menu-icon fa fa-fw fa-desktop"></i>
+                            <span class="mm-text ">Program </span>
                         </a>
+                    </li>
                     <li class="<?php if($curPage=='kegiatan'){ echo 'active'; } ?>">
-                        <a href="<?php echo site_url('ad_kegiatan'); ?>">
-                            <i class="fa fa-fw fa-file-text-o"></i>
-                            <span class="mm-text ">2. Kegiatan</span>
+                        <a href="<?php echo site_url('ad_kegiatan') ?>">
+                            <i class="menu-icon fa fa-fw fa-table"></i>
+                            <span class="mm-text ">Kegiatan </span>
                         </a>
                     </li>
-                    
+                    <li class="<?php if($curPage=='user'){ echo 'active'; } ?>">
+                        <a href="index.html">
+                            <i class="menu-icon fa fa-fw fa-users"></i>
+                            <span class="mm-text ">Tambah User </span>
+                        </a>
                     </li>
-                        </ul>
-                    </li>
- <li class="menu-dropdown <?php if($curPage=='p3a'||$curPage=='koperasi'||$curPage=='menara'){ echo 'active'; } ?>"> 
-
-        <a href="#">
-            <i class="menu-icon fa fa-files-o"></i>
-            <span>NON PERIJINAN</span>
-            <span class="fa arrow"></span>
-        </a>
-        <ul class="sub-menu">
-
-
-             <li class="<?php if($curPage=='p3a'){ echo 'active'; } ?>">
-            <a href="<?php echo site_url('kec_kelembagaan'); ?>">
-                <i class="fa fa-fw fa-file-text-o"></i>
-                <span class="mm-text ">1. Rek. Pembentukan P3A </span>
-            </a>
-
-            </li>
-
-             
-              <li class="<?php if($curPage=='koperasi'){ echo 'active'; } ?>">
-            <a href="<?php echo site_url('kec_koperasi'); ?>">
-                <i class="fa fa-fw fa-file-text-o"></i>
-                <span class="mm-text ">2. Ijin Pendirian Koperasi</span>
-            </a>
-
-            </li>
-
-              <li class="<?php if($curPage=='menara'){ echo 'active'; } ?>">
-            <a href="<?php echo site_url('kec_menara'); ?>">
-                <i class="fa fa-fw fa-file-text-o"></i>
-                <span class="mm-text ">3. Rek. Menara Seluler</span>
-            </a>
-
-            </li>
-
-
-        </ul>
-</li>
-
-</ul>
-
-
-               
+                </ul>
+                <!-- / .navigation -->
             </div>
             <!-- menu -->
         </section>
@@ -188,43 +137,38 @@ $userdata = $this->session->userdata('admin_login');
     <aside class="right-aside view-port-height">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-
-            <h1><?php echo $subtitle ?></h1>
-
+            <h1><?php echo $title; ?></h1>
         </section>
         <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-lg-12">
-
-                <?php echo $content ?>
-                </div>
-            </div>
-        </section>
+        <?php echo $content; ?>
+        
         <!-- /.content -->
     </aside>
     <!-- /.right-side -->
 </div>
 <!-- ./wrapper -->
-
-
-
-
 <!-- global js -->
 <script src="<?php echo base_url(); ?>assets/js/app.js" type="text/javascript"></script>
 <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>  
+<script src="<?php echo base_url("assets") ?>/vendors/airdatepicker/js/datepicker.min.js" type="text/javascript"></script>
 
+<script src="<?php echo base_url(); ?>assets/vendors/airdatepicker/js/datepicker.en.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/vendors/notific/js/jquery.notific8.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/vendors/iCheck/js/icheck.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/autoNumeric.js"></script>
 
-<link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
-<script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrapValidator.min.css">
-<script src="<?php echo base_url(); ?>assets/js/bootstrapValidator.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/pages/datatables.css">
 <script type="text/javascript">
 
+$(".tanggal").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: "dd-mm-yyyy"
+});
+    
+    $(".tanggal").datepicker().on('changeDate', function(ev){                 
+             $('.tanggal').datepicker('hide');
+        });
 
     $(".content .row").find('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',

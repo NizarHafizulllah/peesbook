@@ -65,13 +65,14 @@ class Login extends CI_Controller {
 
 
 		 if($res->num_rows()==0) {
-		 	$ret = array("error"=>true);
+		 	$ret = array("error"=>true, 'message' => "Kata Sandi Atau Password Salah");
 
 		 }else{
 		 	$member = $res->row();
 		 	$jj = array (
 					'login' => true,
 					'id_user' => $member->id,
+					'username' => $member->username,
 					'nama' => $member->nama,
 					'level' => $member->level,
 					'foto' => $member->foto,
@@ -83,6 +84,11 @@ class Login extends CI_Controller {
 				if ($jj['level']==1) {
 					$this->session->set_userdata('admin_login', $jj);
 					$datalogin = $this->session->userdata("admin_login");
+
+					$ret = array("error"=>false, 
+								"level"=>$jj['level'], 
+								"message" => 'Login Berhasil',
+							 	"link" => site_url('admin'));
 						
 				}else if ($jj['level']==2){
 					$this->session->set_userdata('kabid', $jj);
@@ -99,7 +105,7 @@ class Login extends CI_Controller {
 
 		 		
 
-		 	$ret = array("error"=>false, "level"=>$jj['level']);
+		 	
 
 
 		 }

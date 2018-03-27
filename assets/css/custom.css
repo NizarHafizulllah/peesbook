@@ -103,7 +103,7 @@ body > .header .logo {
 /*side bar nav */
 .sidebar {
   display: block;
-  width: 307px; }
+  width: 240px; }
 
 .content {
   display: block;
@@ -329,7 +329,7 @@ li.dropdown-footer a {
 /**** END HEADER RIGHT SIDE DROPDOWNS ****/
 /****** 3.LEFT SIDEBAR ******/
 .left-aside {
-  width: 306px;
+  width: 240px;
   background: #FFF;
   border-right: 5px solid #EEE; }
 

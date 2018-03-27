@@ -63,8 +63,6 @@
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
   <tr  >
-
-
         
         <th>ID</th>
         <th>Nama</th>
