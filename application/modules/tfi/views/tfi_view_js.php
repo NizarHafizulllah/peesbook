@@ -2,12 +2,45 @@
 	
 	$(document).ready(function(){
 
+    <?php if(!empty($kegiatan)){ 
+        $no = 0;
+        foreach ($kegiatan as $k) { ?>
+        
 
-
-    for(B=1; B<=1; B++){
         BarisBaru();
+        $('.id:eq(<?php echo $no; ?>)').val(<?php echo $k['id'] ?>);
+        $('.kegiatan_utama:eq(<?php echo $no; ?>)').html('<?php echo $k['kegiatan_utm'] ?>');
+        $('.anggaran:eq(<?php echo $no; ?>)').val(<?php echo $k['anggaran'] ?>);
+        $('.sumber:eq(<?php echo $no; ?>)').val('<?php echo $k['sumber'] ?>');
+
+        
+        
+    <?php $no++;    } }else{ ?>
+        BarisBaru();
+
+<?php   } ?>
+
+
+
+<?php if(!empty($sasaran)){ 
+        $no = 0;
+        foreach ($sasaran as $k) { ?>
+        
+
         BarisBarusasaran();
-    }
+        $('.id:eq(<?php echo $no; ?>)').val(<?php echo $k['id'] ?>);
+        $('.sasaran:eq(<?php echo $no; ?>)').html('<?php echo $k['sasaran'] ?>');
+        $('.indikator:eq(<?php echo $no; ?>)').html("<?php echo $k['indikator'] ?>");
+        $('.target:eq(<?php echo $no; ?>)').val('<?php echo $k['target'] ?>');
+
+        
+        
+    <?php $no++;    } }else{ ?>
+        BarisBarusasaran();
+
+<?php   } ?>
+
+   
 
     $(".rupiah").autoNumeric('init');
 
@@ -105,13 +138,14 @@
         Baris += "<td>"+Nomor+"</td>";
         Baris += "<td>";
             Baris += ""
-            Baris += "<textarea class='form-control' name='kegiatan_utama[]' id='kegiatan_utama'></textarea>";
+            Baris += "<textarea class='form-control kegiatan_utama' name='kegiatan_utama[]' id='kegiatan_utama'></textarea>";
+            Baris += "<input type='hidden' name='id[]' class='id'>";
         Baris += "</td>";
         Baris += "<td>";
-            Baris += "<input type='text' class='rupiah form-control' name='anggaran[]' id='anggaran' data-a-sign='' data-a-dec=',' data-a-sep='.' placeholder='Anggaran'>";
+            Baris += "<input type='text' class='rupiah form-control anggaran' name='anggaran[]' id='anggaran' data-a-sign='' data-a-dec=',' data-a-sep='.' placeholder='Anggaran'>";
         Baris += "</td>";
         Baris += "<td>";
-            Baris += "<select name='sumber[]' id='sumber' class='form-control'>";
+            Baris += "<select name='sumber[]' id='sumber' class='form-control sumber'>";
              Baris += "<option value=''>-Pilih Satu-</option>";
              Baris += "<option value='APBD'>APBD</option>";
             Baris += "<option value='APBN'>APBN</option>";
@@ -136,6 +170,7 @@
         Baris += "<td>"+Nomor+"</td>";
         Baris += "<td>";
             Baris += "<textarea class='form-control' name='sasaran[]' id='sasaran'></textarea>";
+            Baris += "<input type='hidden' name='id_sasaran[]' class='id_sasaran'>";
         Baris += "</td>";
         Baris += "<td>";
             Baris += "<textarea class='form-control' name='indikator[]' id='indikator'></textarea>";

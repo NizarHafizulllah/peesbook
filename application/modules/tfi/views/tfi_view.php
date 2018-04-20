@@ -105,7 +105,7 @@
                                 <label class="col-sm-2 control-label">Tempat </label>
                                 <div class="col-sm-10">
                                   <input type="text" name="tmpt" id="tmpt" class="form-control input-style" placeholder="Tempat" 
-                                  value="<?php echo isset($tmp)?$tmp:""; ?>">
+                                  value="<?php echo isset($tmpt)?$tmpt:""; ?>">
                                 </div>
                               </div>
                                 <div class="form-group">

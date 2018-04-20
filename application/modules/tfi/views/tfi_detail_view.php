@@ -200,7 +200,7 @@
                 <br/>&nbsp;
                 <div class="col-md-12">
                   <button class="btn btn-primary"><i class="fa fa-print"> </i>Cetak PDF</button>
-                  <button class="btn btn-success"><i class="fa fa-edit"> </i>Edit</button>
+                  <a href="<?php echo site_url('tfi/editdata?id='.$data['id_tfi']) ?>" class="btn btn-success"><i class="fa fa-edit"> </i>Edit</a>
                 </div>
                 <br/>&nbsp;
                 <br/>&nbsp;

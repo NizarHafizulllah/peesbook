@@ -57,6 +57,64 @@ class tfi extends admin_controller {
 	}
 
 
+    function coba(){
+        $var = $this->input->get();
+
+        // show_array($var);
+        $kalimat = $var['kalimat'];
+
+        $pecah = explode(' ', $kalimat);
+
+        show_array($pecah);
+        foreach ($pecah as $key) {
+            $this->db->like('sumbawa', $key);
+            $res = $this->db->get('test_kamus');
+
+            if (!empty($res->num_rows())) {
+            $data = $res->row_array();
+              $hasil[] = $data['indo']; 
+            }else{
+               $hasil[] = $key; 
+            }
+            
+        }
+        echo implode(' ', $hasil);
+        exit();
+    }
+
+
+    function editdata(){
+
+        $post = $this->input->get();
+
+        $data_array = array();
+
+        $this->db->where('id_tfi', $post['id']);
+        $data_array = $this->db->get('tfi')->row_array();
+        
+        $this->db->where('id_tfi', $data_array['id_tfi']);
+        $data_array['sasaran'] = $this->db->get('sasaran')->result_array();
+        
+        $this->db->where('id_tfi', $data_array['id_tfi']);
+        $data_array['kegiatan'] = $this->db->get('kegiatan_tfi')->result_array();
+
+            $data_array['action'] = 'simpan';
+            $data_array['form'] = 'form_simpan';
+            $data_array['curPage'] = '';
+            $content = $this->load->view($this->controller."_view",$data_array,true);
+
+            $data_array['tgl'] = flipdate($data_array['tgl']);
+            // show_array($data_array);
+            // exit();
+
+        $this->set_subtitle("Edit Data TFI");
+        $this->set_title("Edit Data TFI");
+        $this->set_content($content);
+        $this->cetak();
+        
+
+    }
+
     function get_data_bynip(){
 
         $post = $this->input->post();
@@ -67,6 +125,7 @@ class tfi extends admin_controller {
         // $data = $res;
         echo json_encode($res);
 
+        // return;
         // show_array($post);
         // exit();
         // return 0;
