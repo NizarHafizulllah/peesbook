@@ -93,6 +93,12 @@ class Login extends CI_Controller {
 				}else if ($jj['level']==2){
 					$this->session->set_userdata('kabid', $jj);
 					$datalogin = $this->session->userdata('kabid');
+
+
+					$ret = array("error"=>false, 
+								"level"=>$jj['level'], 
+								"message" => 'Login Berhasil',
+							 	"link" => site_url('kabid'));
 					
 
 				}else if ($jj['level']==3) {

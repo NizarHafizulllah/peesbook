@@ -58,7 +58,7 @@
                 <br/>&nbsp;
 
                 <div class="col-md-12">
-                  <iframe width="100%" height="600px" scrolling="no" src="<?php echo base_url('assets').'/file_upload/sop/'.$dir; ?>"></iframe>
+                  <iframe width="100%" height="600px" scrolling="no" src="<?php echo base_url('assets').'/file_upload/kas/'.$dir; ?>"></iframe>
                 </div>
 
                 <br/>&nbsp;

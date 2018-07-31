@@ -40,37 +40,22 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-left" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav menu">
-    <li class="<?php echo $subtitle=='Beranda'?'active':''; ?>"><a href="<?php echo site_url() ?>">Beranda <span class="sr-only">(current)</span></a></li>
+    <li class="<?php echo $subtitle=='Beranda'?'active':''; ?>"><a href="<?php echo site_url('beranda') ?>">Beranda <span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='Perjanjian Kerja'?'active':''; ?>"><a href="<?php echo site_url('beranda/pk') ?>">Perjanjian Kerja<span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='SK'?'active':''; ?>"><a href="<?php echo site_url('beranda/sk') ?>">SK<span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='TOR'?'active':''; ?>"><a href="<?php echo site_url('br_tor') ?>">TOR<span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='DPA'?'active':''; ?>"><a href="<?php echo site_url('br_dpa') ?>">DPA<span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='SOP'?'active':''; ?>"><a href="<?php echo site_url('br_sop') ?>">SOP<span class="sr-only">(current)</span></a></li>
+
+    <li class="<?php echo $subtitle=='KAS'?'active':''; ?>"><a href="<?php echo site_url('br_kas') ?>">KAS<span class="sr-only">(current)</span></a></li>
+ 
     <li class="<?php echo $subtitle=='Profil Dearah'?'active':''; ?>"><a href="<?php echo site_url('beranda/profil_daerah') ?>">Profil Daerah<span class="sr-only">(current)</span></a></li>
-    <li class="<?php echo $subtitle=='Profil Program'?'active':''; ?>"><a href="<?php echo site_url('beranda/klaster') ?>">Profil Program<span class="sr-only">(current)</span></a></li>
- <!--    <li class="dropdown <?php //echo $aktif=='pendaftar'?'active':''; ?>">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil Daerah<span class="caret"></span></a>
-      <ul class="dropdown-menu">
-      <li><a href="<?php echo site_url('beranda/klaster1'); ?>">Klaster 1</a></li>
-      <li><a href="<?php echo site_url('beranda/klaster2'); ?>">Klaster 2</a></li>
-      <li><a href="<?php echo site_url('beranda/klaster3'); ?>">Klaster 3</a></li>
-      <li><a href="<?php echo site_url('beranda/klaster4'); ?>">Klaster 4</a></li>
-      </ul>
-    </li> -->
-    <li class="<?php echo $subtitle=='Datamart'?'active':''; ?>"><a href="<?php echo site_url('beranda/datamart') ?>">Datamart <span class="sr-only">(current)</span></a></li>
-    <!--li class="<?php echo $subtitle=='Grafik'?'active':''; ?>"><a href="<?php echo site_url('beranda/grafik') ?>">Grafik<span class="sr-only">(current)</span></a></li-->
-	<li class="dropdown <?php echo $subtitle=='Grafik'?'active':''; ?>">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grafik <span class="caret"></span></a>
-		<ul class="dropdown-menu">
-		  <li><a href="<?php echo site_url('beranda/grafik/1'); ?>">Penduduk Miskin per Kabupaten</a></li>
-      <li><a href="<?php echo site_url('beranda/grafik/2'); ?>">Garis Kemiskinan per Kabupaten</a></li>
-		  <li><a href="<?php echo site_url('beranda/grafik_kec'); ?>">Penduduk Miskin Per Kecamatan</a></li>
-		</ul>
-    </li>
-    <li class="<?php echo $subtitle=='Tematik'?'active':''; ?>"><a href="<?php echo site_url('beranda/tematik') ?>">Tematik<span class="sr-only">(current)</span></a></li>
- 	<li class="dropdown <?php echo $subtitle=='Pivot'?'active':''; ?>">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pivot <span class="caret"></span></a>
-		<ul class="dropdown-menu">
-		  <li><a href="<?php echo site_url('beranda/pivot/1'); ?>">Penduduk Miskin per Kabupaten</a></li>
-		  <li><a href="<?php echo site_url('beranda/pivot/2'); ?>">Garis Kemiskinan per Kabupaten</a></li>
-		  <li><a href="<?php echo site_url('beranda/pivot_kec'); ?>">Penduduk Miskin Per Kecamatan</a></li>
-		</ul>
-    </li>
+
     </ul>
   </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -87,104 +72,7 @@
 <script>
 $(function () {
 
-    $(document).ready(function () {
 
-        // Build the chart
-        $('#container').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Data Jumlah Kemiskinan Menurut Kecamatan'
-            },
-			subtitle: {
-				text: 'Tahun :<?php echo date('Y')-1; ?>',
-			},
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Persentasi',
-                colorByPoint: true,
-                data: [
-			
-				<?php
-				
-					$kec 	= $this->db->get_where('tiger_kecamatan', array('id_kota' => '52_7'))->result();
-					$query	= "SELECT tk.kecamatan, COUNT(dk.nik) jumlah FROM data_kemiskinan dk
-							   LEFT JOIN penduduk p on p.nik = dk.nik
-							   LEFT JOIN tiger_desa td on td.id = p.id_desa
-							   LEFT JOIN tiger_kecamatan tk on tk.id = td.id_kecamatan
-							   WHERE dk.tahun = ".(date('Y')-1)."
-							   GROUP BY(tk.id)";
-					$jml	= $this->db->query($query)->result();
-					
-					
-					$total = 0;
-					foreach($jml as $row): 
-	
-						$total = $total + $row->jumlah;
-
-					endforeach;					
-					
-					foreach($kec as $list):
-						
-						if(!$jml) {
-							$nilai = '0.0';
-						} else {
-						
-							foreach($jml as $row): 
-								if($list->kecamatan == $row->kecamatan) {
-									$nilai = $row->jumlah/$total*100;
-									break;
-								} else {
-									$nilai = '0.0';
-								}
-							endforeach;
-							
-						}
-				?>		
-					{
-						name: <?php echo "'$list->kecamatan'"; ?>,
-						y: <?php echo $nilai; ?>
-					},
-						
-				<?php endforeach; ?>
-					
-				]
-            }]
-        });
-    });
-	
-	$('#tahundonat').change(function() {
-		
-		$('#container').html('<div style="text-align: center; padding-top: 150px;"><img src="<?php echo base_url('assets/images/35.gif'); ?>"></div>');
-		
-		$.ajax({
-			
-			url : '<?php echo site_url("beranda/get_grafdon_kec"); ?>',
-            data : 'tahun=' + $(this).val(),
-            type : 'get', 
-            success : function(result) {
-                $("#container").html(result);
-            }
-			
-		});
-		
-	});
 
 });
 
@@ -193,33 +81,31 @@ $(function () {
 <div class="col-md-4">
   <div class="panel panel-default" style="height: 490px;">
     <div class="panel-heading">
-    <h3 class="panel-title">Grafik</h3>
+    <h3 class="panel-title">Menu</h3>
     </div>
 	<div class="container-fluid" style="margin-top: 12px">
-		<div class="col-md-7 col-md-offset-6">
-			<select class="form-control" id="tahundonat">
-				<option value=""> - Pilih Tahun - </option>
-				<?php for($x=date('Y'); $x>=2014; $x--) { ?>
-					<option value="<?php echo $x; ?>"><?php echo $x; ?></option>
-				<?php } ?>
-			</select>
-		</div>
+	
+      <div class="panel panel-default">
+    <ul class="list-group">
+      <a href="<?php echo site_url('beranda/pk'); ?>" class="list-group-item">Perjanjian Kerja</a>
+      <a href="<?php echo site_url('br_sk'); ?>" class="list-group-item">SK</a>   
+      <a href="<?php echo site_url('br_tor'); ?>" class="list-group-item">TOR</a>
+      <a href="<?php echo site_url('br_dpa'); ?>" class="list-group-item">DPA</a>   
+      <a href="<?php echo site_url('br_sop'); ?>" class="list-group-item">SOP</a>   
+      <a href="<?php echo site_url('br_kas'); ?>" class="list-group-item">KAS</a>
+      <a href="<?php echo site_url('beranda/profil_daerah'); ?>" class="list-group-item">Profil Daerah</a>
+      <a href="<?php echo site_url('login'); ?>" class="list-group-item">Login</a>         
+    </ul>       
+  </div>
 	</div>
   <div id="container"></div>
   </div>
-  <div class="panel panel-default">
-    <ul class="list-group">
-      <a href="<?php echo site_url('beranda/tematik'); ?>" class="list-group-item">Tematik</a>
-      <a href="<?php echo site_url('beranda/pivot'); ?>" class="list-group-item">Pivot</a>
-      <a href="<?php echo site_url('beranda/statistik'); ?>" class="list-group-item">Statistik Situs</a>
-      <a href="<?php echo site_url('beranda/kegiatan'); ?>" class="list-group-item">Foto Kegiatan</a>   
-    </ul>       
-  </div>
+  
 </div>
   </div>
   
   <div class="container-fluid footer">
-    &copy; PEMDA Kab. Sumbawa Barat
+    &copy; BAPEDA Kab. Sumbawa Besar
   </div>
   
   <script>

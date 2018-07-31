@@ -57,30 +57,8 @@ class tfi extends admin_controller {
 	}
 
 
-    function coba(){
-        $var = $this->input->get();
-
-        // show_array($var);
-        $kalimat = $var['kalimat'];
-
-        $pecah = explode(' ', $kalimat);
-
-        show_array($pecah);
-        foreach ($pecah as $key) {
-            $this->db->like('sumbawa', $key);
-            $res = $this->db->get('test_kamus');
-
-            if (!empty($res->num_rows())) {
-            $data = $res->row_array();
-              $hasil[] = $data['indo']; 
-            }else{
-               $hasil[] = $key; 
-            }
-            
-        }
-        echo implode(' ', $hasil);
-        exit();
-    }
+ 
+ 
 
 
     function editdata(){
@@ -88,6 +66,7 @@ class tfi extends admin_controller {
         $post = $this->input->get();
 
         $data_array = array();
+
 
         $this->db->where('id_tfi', $post['id']);
         $data_array = $this->db->get('tfi')->row_array();
@@ -98,22 +77,107 @@ class tfi extends admin_controller {
         $this->db->where('id_tfi', $data_array['id_tfi']);
         $data_array['kegiatan'] = $this->db->get('kegiatan_tfi')->result_array();
 
-            $data_array['action'] = 'simpan';
-            $data_array['form'] = 'form_simpan';
+        foreach ($data_array['kegiatan'] as $key => $value) {
+            $data_array['kegiatan'][$key]['anggaran'] = rupiah($value['anggaran']);
+        }
+
+        // show_array($data_array['kegiatan']);
+        // exit();
+        $data_array['tgl'] = flipdate($data_array['tgl']);
+
+
+            $data_array['action'] = 'update';
+            $data_array['form'] = 'form_update';
             $data_array['curPage'] = '';
             $content = $this->load->view($this->controller."_view",$data_array,true);
 
-            $data_array['tgl'] = flipdate($data_array['tgl']);
+            
             // show_array($data_array);
             // exit();
 
-        $this->set_subtitle("Edit Data TFI");
-        $this->set_title("Edit Data TFI");
+        $this->set_subtitle("Edit Data PK");
+        $this->set_title("Edit Data PK");
         $this->set_content($content);
         $this->cetak();
         
 
     }
+
+
+    function update(){
+        $post = $this->input->post();
+        // show_array($post['sasaran']);
+        // show_array($post['id_sasaran']);
+        // exit();
+
+        $userdata = $this->session->userdata('admin_login');
+
+
+
+        // show_array($post);
+        // exit();
+    
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nip_pihak_pertama','NIP Pihak Pertama','required');  
+        $this->form_validation->set_rules('nip_pihak_kedua','NIP Pihak Kedua','required');     
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+
+        
+        
+        // show_array($post);
+        // exit();
+    if($this->form_validation->run() == TRUE ) { 
+
+
+        $sasaran = $this->dm->insert_sasaran($post);
+
+        $kegiatan = $this->dm->insert_kegiatan($post);
+                       
+        unset($post['id_kegiatan']);
+        unset($post['sasaran']);
+        unset($post['indikator']);
+        unset($post['target']);
+        unset($post['kegiatan_utama']);
+        unset($post['anggaran']);
+        unset($post['sumber']);
+        unset($post['id']);
+        unset($post['id_sasaran']);
+        
+
+        $post['tgl'] = flipdate($post['tgl']);
+        $post['user_input'] = $userdata['nama'];
+
+        $this->db->where('id_tfi', $post['id_tfi']);
+        $res = $this->db->update('tfi', $post); 
+        // $id_tfi = $this->db->insert_id();
+        if($res){
+            
+
+            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
+        }
+    }
+    else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+    }
+        echo json_encode($arr);
+                        
+                            
+
+                         
+    }
+
+
+
 
     function get_data_bynip(){
 
@@ -136,9 +200,12 @@ class tfi extends admin_controller {
 
 
 	function simpan(){
+
+
 		$post = $this->input->post();
         $userdata = $this->session->userdata('admin_login');
-
+        // show_array($post);
+        // exit();
         $jumlah_baris_sasaran =  count($post['sasaran'])-1;
         $jumlah_baris_kegiatan = count($post['kegiatan_utama'])-1;
 
@@ -167,6 +234,8 @@ class tfi extends admin_controller {
         unset($post['anggaran']);
         unset($post['sumber']);
         unset($post['id']);
+        unset($post['id_sasaran']);
+        
 
 
 
@@ -222,7 +291,69 @@ class tfi extends admin_controller {
         echo json_encode($arr);
 	}
 
+   function cetaksurat(){
 
+
+        $get = $this->input->get(); 
+
+        // show_array($get);
+        // exit();
+    
+        $tahun_ini = date('Y');
+        $this->db->where('year(tgl)', $tahun_ini);
+        $tfi = $this->db->get('tfi');
+
+        // echo $this->db->last_query();
+        // exit();
+       
+            $data['data'] = $tfi->row_array();
+            $this->db->where('id_tfi', $data['data']['id_tfi']);
+            $data['data']['sasaran'] = $this->db->get('sasaran')->result_array();
+            $this->db->where('id_tfi', $data['data']['id_tfi']);
+            $data['data']['kegiatan'] = $this->db->get('kegiatan_tfi')->result_array();
+           
+
+
+
+    $data['controller'] = get_class($this);
+    $data['header'] = "Perjanjian Kerja";
+    // $data['query'] = $resx->row_array();
+
+   
+    // show_array($data);
+    // exit();
+
+    
+    
+    // show_array($data);exit;
+    $data['title'] = $data['header'];
+    $this->load->library('Pdf');
+        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle( $data['header']);
+     
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetHeaderMargin(10);
+        $pdf->SetFooterMargin(10);
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        $pdf->SetAutoPageBreak(true,10);
+        $pdf->SetAuthor('PKPD  taujago@gmail.com');
+         
+            
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(true);
+
+         // add a page
+        $pdf->AddPage('P');
+
+ 
+
+         $html = $this->load->view("pdf/cetak_data",$data,true);
+         $pdf->writeHTML($html, true, false, true, false, '');
+
+ 
+         $pdf->Output($data['header']. $this->session->userdata("tahun") .'.pdf', 'FI');
+}
 
 
 

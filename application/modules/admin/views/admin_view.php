@@ -156,7 +156,7 @@ Menu
 
 
 <!-- KAS -->
-<a href="index2.html">  
+<a href="<?php echo site_url('kas') ?>">  
 <div class="hexagon" style="width: 400px; height: 200px; margin-top: -540px; margin-left: 510px;">
 <div class="hexagon-inside">
 <div class="hexagon-image" style="text-align: center;color: black; vertical-align: middle; background: #ffc000 ;background-image: url(<?php echo base_url('') ?>assets/img/6.png); background-repeat: no-repeat; background-position: center;">

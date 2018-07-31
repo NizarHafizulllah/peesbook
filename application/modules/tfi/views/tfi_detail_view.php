@@ -199,7 +199,7 @@
                 <br/>&nbsp;
                 <br/>&nbsp;
                 <div class="col-md-12">
-                  <button class="btn btn-primary"><i class="fa fa-print"> </i>Cetak PDF</button>
+                  <a class="btn btn-primary" target="_blank" href="<?php echo site_url('tfi/cetaksurat?id='.$data['id_tfi']) ?>" ><i class="fa fa-print"> </i>Cetak PDF</a>
                   <a href="<?php echo site_url('tfi/editdata?id='.$data['id_tfi']) ?>" class="btn btn-success"><i class="fa fa-edit"> </i>Edit</a>
                 </div>
                 <br/>&nbsp;

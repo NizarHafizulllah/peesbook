@@ -1,6 +1,6 @@
 <h3>Profil Dearah</h3>
 <hr>
-Kabupaten Sumbawa Barat sebagai salah satu daerah dari sembilan kabupaten/kota yang berada pada di wilayah Provinsi Nusa Tenggara Barat terletak di ujung barat Pulau Sumbawa pada posisi 116&deg;42’ sampai dengan 117&deg;05’ Bujur Timur dan 08&deg;08' sampai dengan 09&deg;07’ Lintang Selatan, dengan batas – batas sebagai berikut :
+Kabupaten Sumbawa sebagai salah satu daerah dari sepuluh kabupaten/kota yang berada di wilayah Propinsi Nusa Tenggara Barat terletak di ujung barat Pulau Sumbawa, pada posisi 116" 42' sampai dengan 118" 22' Bujur Timur dan 8" 8' sampai dengan 9" 7' Lintang Selatan serta memiliki luas wilayah 6.643,98 Km2.
 <br>
 <br>
 <table width="100%">
@@ -27,10 +27,16 @@ Kabupaten Sumbawa Barat sebagai salah satu daerah dari sembilan kabupaten/kota y
 </table>
 <br>
 <br>
-Wilayah daratan KSB tahun 2004 seluas 184.902 ha, mencakup lima kecamatan dengan urutan dari yang terluas hingga tersempit adalah Kecamatan Jereweh 31,08%, Kecamatan Taliwang 27,93 %, Kecamata Sekongkang 16,50%, Kecamatan Seteluk 13,00%, dan Kecamatan Brang Rea 11,50% dari luas Kabupaten. Selanjutnya dalam perkembangannya sampai dengan tahun 2008, Wilayah Administrasi Kabupaten Sumbawa Barat telah dimekarkan menjadi 8 (delapan) Kecamatan, yakni Kecamatan Poto Tano dengan Luas 15,888 ha yang terdiri dari 6 desa/desa persiapan, Kecamatan Seteluk dengan luas wilayah 23.621 ha yang terdiri dari  7 desa, Kecamatan Brang Rea dengan Luas mencapai 21.207 ha yang terdiri dari 4 desa, Kemudian Kecamatan Brang Ene dengan luas wilayah 14.090 ha yang terdiri dari 5 desa, Kecamatan Taliwang sebagai Ibu Kota Kabupaten memiliki luas wilayah 37.593 ha yang terdiri dari 6 Kelurahan dan 7 desa, selanjutnya Kecamatan Jereweh memiliki luas 26.019 ha yang terdiri dari 4 desa, Kecamatan Maluk dengan luas wilayah 9.242 ha yang terdiri dari 5 desa dan Kecamatan Sekongkang yang terletak di ujung Selatan Kab. Sumbawa Barat memiliki luas wilayah 37.242 ha yang terdiri dari 6 desa. 
+Daerah Kabupaten Sumbawa merupakan daerah yang beriklim tropis yang dipengaruhi oleh musim hujan dan musim kemarau. Pada tahun 2011 temperatur maksimum mencapai 36,6° C yang terjadi pada bulan Oktober dan temperatur minimum 32,0° C yang terjadi pada bulan Januari. Rata-rata kelembaban udara tertinggi selama tahun 2011 mencapai 89% pada bulan Januari dan terendah mencapai 70% pada bulan Agustus dan September, serta tekanan udara maksimum 1.011,1 mb dan minimum 1.006,5 mb.
+<br/>
+<br>
+Adanya gejala alam seperti elnino yang melanda sebagian wilayah Indonesia termasuk Kabupaten Sumbawa, berpengaruh terhadap banyaknya hari hujan dan curah hujan. Hal ini terlihat dari banyaknya hari hujan dan curah hujan yang terjadi sepanjang tahun 2011. Dibandingkan dengan tahun sebelumnya jumlah hari hujan lebih banyak yaitu sebanyak 148 hari, dengan hari hujan terbanyak terjadi pada bulan Januari sebanyak 26 hari.
+<br>
+<br>
+Demikian juga dengan curah hujan, dimana curah hujan terbanyak terjadi pada bulan Pebruari yaitu sebesar 316 mm. Satu hal yang dapat berpengaruh terhadap hari hujan dan curah hujan adalah besarnya penguapan. Karena banyak sedikitnya penguapan dapat berpengaruh terhadap banyak sedikitnya hari hujan dan curah hujan yang terjadi pada periode berikutnya.
 <br>
 <br>
 
 
 
-<img class="col-md-12" src="<?php echo base_url('assets/images/petaksb.jpg'); ?>">
+<img class="col-md-12" src="<?php echo base_url('assets/img/peta.jpg'); ?>">

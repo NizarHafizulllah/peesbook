@@ -68,7 +68,8 @@
   <tr  >
         
         <th width="5%">ID</th>
-        <th width="70%">Kegiatan</th>
+        <th width="58%">Kegiatan</th>
+        <th width="12%">Status</th>
         <th width="10%">Tahun</th>
         <th width="15%">#</th>
     </tr>

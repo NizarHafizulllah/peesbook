@@ -108,11 +108,16 @@ class sop extends admin_controller {
                             </div>";
 
         
-        
+        if ($row['status']==0) {
+        $status = '<span class="label label-sm label-danger">Belum Diproses</span>';
+    }else{
+         $status = '<span class="label label-sm label-success">Telah Disetujui</span>';
+    }
         	 
         	$arr_data[] = array(
         		$row['id'],
         		$row['kegiatan'],
+                $status,
                 $row['tahun'], 
         		$action
         		

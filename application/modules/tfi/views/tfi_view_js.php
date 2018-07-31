@@ -2,20 +2,30 @@
 	
 	$(document).ready(function(){
 
+
+        // $('.tanggal').datepicker().on('changeDate', function(ev){
+        //      $('.tanggal').datepicker('hide');
+        //      $('.tanggal').regional('en');
+        //     });
+
+        //  $("#tgl").val('<?php echo isset($tgl)?$tgl:""; ?>');
+
+        $(".rupiah").autoNumeric('init');
+
     <?php if(!empty($kegiatan)){ 
-        $no = 0;
-        foreach ($kegiatan as $k) { ?>
+        $nok = 0;
+        foreach ($kegiatan as $c) { ?>
         
 
         BarisBaru();
-        $('.id:eq(<?php echo $no; ?>)').val(<?php echo $k['id'] ?>);
-        $('.kegiatan_utama:eq(<?php echo $no; ?>)').html('<?php echo $k['kegiatan_utm'] ?>');
-        $('.anggaran:eq(<?php echo $no; ?>)').val(<?php echo $k['anggaran'] ?>);
-        $('.sumber:eq(<?php echo $no; ?>)').val('<?php echo $k['sumber'] ?>');
+        $('.id_kegiatan:eq(<?php echo $nok; ?>)').val(<?php echo $c['id'] ?>);
+        $('.kegiatan_utama:eq(<?php echo $nok; ?>)').html("<?php echo $c['kegiatan_utm'] ?>");
+        $('.anggaran:eq(<?php echo $nok; ?>)').val("<?php echo $c['anggaran'].',00' ?>");
+        $('.sumber:eq(<?php echo $nok; ?>)').val('<?php echo $c['sumber'] ?>');
 
         
         
-    <?php $no++;    } }else{ ?>
+    <?php $nok++;    } }else{ ?>
         BarisBaru();
 
 <?php   } ?>
@@ -28,10 +38,10 @@
         
 
         BarisBarusasaran();
-        $('.id:eq(<?php echo $no; ?>)').val(<?php echo $k['id'] ?>);
-        $('.sasaran:eq(<?php echo $no; ?>)').html('<?php echo $k['sasaran'] ?>');
+        $('.id_sasaran:eq(<?php echo $no; ?>)').val(<?php echo $k['id'] ?>);
+        $('.sasaran:eq(<?php echo $no; ?>)').html("<?php echo $k['sasaran'] ?>");
         $('.indikator:eq(<?php echo $no; ?>)').html("<?php echo $k['indikator'] ?>");
-        $('.target:eq(<?php echo $no; ?>)').val('<?php echo $k['target'] ?>');
+        $('.target:eq(<?php echo $no; ?>)').val(<?php echo $k['target'] ?>);
 
         
         
@@ -42,7 +52,7 @@
 
    
 
-    $(".rupiah").autoNumeric('init');
+    
 
     $("#simpan").click(function(){
  // console.log('tests');
@@ -50,6 +60,44 @@
     $.ajax({
         url:'<?php echo site_url("$this->controller/simpan"); ?>',
         data : $('#form_simpan').serialize(),
+        type : 'post',
+        dataType : 'json',
+        success : function(obj){
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Informasi',
+                            message: obj.message
+                             
+                        });   
+                      $('#form_data').data('bootstrapValidator').resetForm(true);
+                      
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+            }
+        }
+    });
+
+    return false;
+});
+
+  $("#update").click(function(){
+ // console.log('tests');
+
+    $.ajax({
+        url:'<?php echo site_url("$this->controller/update"); ?>',
+        data : $('#form_update').serialize(),
         type : 'post',
         dataType : 'json',
         success : function(obj){
@@ -93,9 +141,10 @@
         BarisBarusasaran();
     });
 
-		$('.tanggal').datepicker().on('changeDate', function(ev){
-             $('.tanggal').datepicker('hide');
-            });
+
+
+
+
 
 		$('#nip_pihak_pertama').blur(function(){
 			
@@ -139,7 +188,7 @@
         Baris += "<td>";
             Baris += ""
             Baris += "<textarea class='form-control kegiatan_utama' name='kegiatan_utama[]' id='kegiatan_utama'></textarea>";
-            Baris += "<input type='hidden' name='id[]' class='id'>";
+            Baris += "<input type='hidden' name='id_kegiatan[]' class='id_kegiatan'>";
         Baris += "</td>";
         Baris += "<td>";
             Baris += "<input type='text' class='rupiah form-control anggaran' name='anggaran[]' id='anggaran' data-a-sign='' data-a-dec=',' data-a-sep='.' placeholder='Anggaran'>";
@@ -169,14 +218,14 @@
     var Baris = "<tr>";
         Baris += "<td>"+Nomor+"</td>";
         Baris += "<td>";
-            Baris += "<textarea class='form-control' name='sasaran[]' id='sasaran'></textarea>";
-            Baris += "<input type='hidden' name='id_sasaran[]' class='id_sasaran'>";
+            Baris += "<textarea class='form-control sasaran' name='sasaran[]' id='sasaran'></textarea>";
+            Baris += "<input type='hidden' name='id_sasaran[]' id='id_sasaran' class='id_sasaran'>";
         Baris += "</td>";
         Baris += "<td>";
-            Baris += "<textarea class='form-control' name='indikator[]' id='indikator'></textarea>";
+            Baris += "<textarea class='form-control indikator' name='indikator[]' id='indikator'></textarea>";
         Baris += "</td>";
         Baris += "<td>";
-            Baris += "<input type='text' class='form-control' name='target[]' id='target' placeholder='Target Kinerja'>";
+            Baris += "<input type='text' class='form-control target' name='target[]' id='target' placeholder='Target Kinerja'>";
         Baris += "</td>";
         Baris += "<p><td><button class='btn btn-danger btn-xs' id='HapusBarisSasaran'><span class='fa fa-fw fa-times'></span></i></button></p></td>";
         Baris += "</tr>";

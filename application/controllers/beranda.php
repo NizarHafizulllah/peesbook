@@ -14,7 +14,41 @@ class Beranda extends master_controller  {
 		$content = $this->load->view($this->controller."/content/welcome",$data_array, true);
 		
 		$this->set_subtitle("Beranda");
-		$this->set_title("SIMPK - Sistem Informasi Pengentasan Kemiskinan");
+		$this->set_title("PESBOOK - Buku Panduan Evaluasi Staf");
+		$this->set_content($content);
+		$this->render();
+	}
+
+
+	function pk(){
+		$data_array = array();
+
+
+		$tahun_ini = date('Y');
+        $this->db->where('year(tgl)', $tahun_ini);
+        $tfi = $this->db->get('tfi');
+
+        // echo $this->db->last_query();
+        // exit();
+        if ($tfi->num_rows()==0) {
+            $data_array['action'] = 'simpan';
+            $data_array['form'] = 'form_simpan';
+            $data_array['curPage'] = '';
+            $content = $this->load->view("kabid_tfi/no_data_tfi",$data_array,true);
+        }else{
+            $data_array['data'] = $tfi->row_array();
+            $this->db->where('id_tfi', $data_array['data']['id_tfi']);
+            $data_array['data']['sasaran'] = $this->db->get('sasaran')->result_array();
+            $this->db->where('id_tfi', $data_array['data']['id_tfi']);
+            $data_array['data']['kegiatan'] = $this->db->get('kegiatan_tfi')->result_array();
+            $data_array['curPage'] = '';
+            $content = $this->load->view($this->controller."/content/pk_view",$data_array,true);
+        }
+
+		// $content = $this->load->view($this->controller."/content/pk_view",$data_array, true);
+		
+		$this->set_subtitle("Perjanjian Kerja");
+		$this->set_title("PESBOOK - Buku Panduan Evaluasi Staf");
 		$this->set_content($content);
 		$this->render();
 	}
@@ -24,20 +58,26 @@ class Beranda extends master_controller  {
 		$content = $this->load->view($this->controller."/content/profil_daerah",$data_array, true);
 		
 		$this->set_subtitle("Profil Dearah");
-		$this->set_title("SIMPK - Profil Dearah");
+		$this->set_title("PESBOOK - Profil Dearah");
 		$this->set_content($content);
 		$this->render();
 	}
 
-		function datamart() {
+		function sk() {
 		$data_array = array();
-		$content = $this->load->view($this->controller."/content/datamart",$data_array, true);
+
+		$tahun = date('Y');
+        $data_array['arr_kegiatan'] = $this->cm->arr_dropdown3("kegiatan_tfi", "id", "kegiatan_utm", "kegiatan_utm", "tahun", $tahun);
+		$content = $this->load->view($this->controller."/content/sk_view",$data_array, true);
 		
-		$this->set_subtitle("Datamart");
-		$this->set_title("SIMPK - Datamart");
+		$this->set_subtitle("SK");
+		$this->set_title("PESBOOK - SK");
 		$this->set_content($content);
 		$this->render();
 	}
+
+
+
 
 	function get_grafik() {
 		

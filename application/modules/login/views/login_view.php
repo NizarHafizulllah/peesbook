@@ -16,15 +16,6 @@
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/dialog/css/bootstrap-dialog.css">
 
-  <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
 
 
@@ -135,14 +126,14 @@
   <script src="<?php echo base_url(); ?>assets/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
   <script src="<?php echo base_url(); ?>assets/login/js/main.js"></script>
-
+<!-- 
 <link href="<?php echo base_url(); ?>assets/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
-<script src="<?php echo base_url(); ?>assets/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script> -->
+  <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script> -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+<link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js" type="text/javascript"></script>
      
@@ -181,16 +172,20 @@
            
                   
                                     }else if(hasil.error == false && hasil.level == 2){
-                                        swal({
-                                                title: 'Login Berhasil',
-                                                text: 'Anda Login Sebagai Admin Kabupaten',
-                                                type: 'success',
-                                                buttonsStyling: false,
-                                                confirmButtonClass: 'btn btn-primary'
-                                                  
-                                            });
+                                        BootstrapDialog.alert({
+                                                type: BootstrapDialog.TYPE_PRIMARY,
+                                                title: 'Informasi',
+                                                message: hasil.message,
+
+                                                callback: function(result) {
+                                                        location.href=hasil.link;
+                                                }
+                                                 
+                                                 
+                                                } 
+                                            ); 
                                      
-                                                window.location.href = '<?php echo site_url("kabupaten"); ?>';
+                                          
                                     }else if(hasil.error == false && hasil.level == 3){
                                         swal({
                                                 title: 'Login Berhasil',

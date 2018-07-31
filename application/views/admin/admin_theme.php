@@ -166,9 +166,7 @@ $(".tanggal").datepicker({
     dateFormat: "dd-mm-yyyy"
 });
     
-    $(".tanggal").datepicker().on('changeDate', function(ev){                 
-             $('.tanggal').datepicker('hide');
-        });
+    
 
     $(".content .row").find('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',

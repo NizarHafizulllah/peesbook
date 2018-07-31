@@ -2,7 +2,7 @@
      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
    <link href="<?php echo base_url(); ?>assets/vendors/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
 <script src="<?php echo base_url(); ?>assets/vendors/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
-   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/omg/bootstrap-dialog.min.css">
+   <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/omg/bootstrap-dialog.min.css"> -->
 
    <script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
         <!-- Main content -->
@@ -11,7 +11,6 @@
             z-index: -1;
         }
       </style>
-
 
 
 
@@ -30,8 +29,8 @@
                               <div class="form-group">
       <label class="col-sm-2 control-label">NIP Pihak Pertama </label>
       <div class="col-sm-10">
-        <input type="text" name="nip_pihak_pertama" id="nip_pihak_pertama" class="form-control input-style" placeholder="NIP Pihak Pertama" 
-        value="<?php echo isset($nip_pihak_pertama)?$nip_pihak_pertama:""; ?>">
+        <input type="text" name="nip_pihak_pertama" id="nip_pihak_pertama" class="form-control input-style" placeholder="NIP Pihak Pertama" value="<?php echo isset($nip_pihak_pertama)?$nip_pihak_pertama:""; ?>">
+        <input type="hidden" name="id_tfi" id="id_tfi"  value="<?php echo isset($id_tfi)?$id_tfi:""; ?>">
       </div>
     </div>
     <div class="form-group">
@@ -111,7 +110,7 @@
                                 <div class="form-group">
                                 <label class="col-sm-2 control-label">Tanggal </label>
                                 <div class="col-sm-10">
-                                  <input type="text" name="tgl" id="tgl" class="tanggal form-control input-style" placeholder="Tanggal" 
+                                  <input type="text" name="tgl" id="tgl" class="tanggal form-control input-style" placeholder="Tanggal" data-language='en'
                                   value="<?php echo isset($tgl)?$tgl:""; ?>" data-date-format="dd-mm-yyyy">
                                 </div>
                               </div>  
