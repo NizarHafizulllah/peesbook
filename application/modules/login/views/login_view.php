@@ -10,7 +10,6 @@
 
   <title>PESBOOK | </title>
 
-  <!-- Bootstrap core CSS -->
 
   
 
