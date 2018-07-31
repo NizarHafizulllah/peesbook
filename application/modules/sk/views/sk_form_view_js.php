@@ -19,7 +19,10 @@ $(document).ready(function(){
 
 $("#simpan").click(function(){
  console.log('tests');
-
+for ( instance in CKEDITOR.instances ) {
+        CKEDITOR.instances[instance].updateElement();
+    }
+    
     $.ajax({
         url:'<?php echo site_url("$this->controller/simpan"); ?>',
         data : new FormData($('#form_simpan')[0]),

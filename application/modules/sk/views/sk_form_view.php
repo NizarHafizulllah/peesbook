@@ -273,7 +273,17 @@
                                   value="<?php echo isset($tgl_penetapan)?$tgl_penetapan:""; ?>" data-date-format="dd-mm-yyyy">
                                 </div>
                               </div> 
-                
+
+
+
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Nomor </label>
+                                <div class="col-sm-10">
+                                  <input type="text" name="no" id="no" class="form-control input-style" placeholder="Nomor" data-language='en'
+                                  value="<?php echo isset($no)?$no:""; ?>" >
+                                </div>
+                              </div> 
+                <input type="hidden" name="id" value="<?php echo isset($id)?$id:""; ?>">
 
                
                 

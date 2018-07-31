@@ -19,7 +19,7 @@
 
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
 
-<h3>KAS</h3>
+<h3>SOP</h3>
 <hr>
         <!-- Content Header (Page header) -->
         

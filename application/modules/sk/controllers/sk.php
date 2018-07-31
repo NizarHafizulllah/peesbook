@@ -41,6 +41,39 @@ class sk extends admin_controller {
 	}
 
 
+	function simpan(){
+		$post = $this->input->post();
+    
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('id_kegiatan','Kegiatan','required');     
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+
+
+	if($this->form_validation->run() == TRUE ) { 
+
+
+        $post['tahun'] = date('Y');
+        $res = $this->db->insert('kas', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+	}
+	else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+	}
+        echo json_encode($arr);
+	}
+
     function baru(){
         $data_array=array();
         $data_array['curPage'] = '';

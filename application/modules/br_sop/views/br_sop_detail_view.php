@@ -37,7 +37,7 @@
                         			<td>&nbsp;</td>
                         		</tr>
                         		<tr>
-                        			<td align="center" style="font-size: 20px; font-family: Sans Serif"><b>DPA Tahun <?php echo $tahun; ?></b></td>
+                        			<td align="center" style="font-size: 20px; font-family: Sans Serif"><b>SOP Tahun <?php echo $tahun; ?></b></td>
                         		</tr>
                         	</table>
     						<br/>&nbsp;
